@@ -6,8 +6,10 @@ import sys
 import os
 
 if __name__ == "__main__":
-  # Having this strict path is terrible!!!
-  base_path = '/Users/Tyler/Documents/School/SeniorDesign/WebAppPrototypes/HereDoggie/public/system/searches/'
+  config = {}
+  execfile("paths.conf", config)
+  
+  base_path = config["base_image_path"]
 
   # Maybe load all cascades in a certain directory
   # So we can run detection with multiple cascades
@@ -17,7 +19,7 @@ if __name__ == "__main__":
 
   # Create MySQL and SQLite3 connections and cursors
   dog_conn = mysql.connector.connect(user='root', password='1dontknow', host='127.0.0.1', database='dog_face')
-  webapp_conn = sqlite3.connect('/Users/Tyler/Documents/School/SeniorDesign/WebAppPrototypes/HereDoggie/db/development.sqlite3')
+  webapp_conn = sqlite3.connect(config["sqlite3_path"])
   dog_cursor = dog_conn.cursor()
   webapp_cursor = webapp_conn.cursor()
 
