@@ -4,41 +4,36 @@ sys.path.append('../')
 import face_recognizer as fr
 from os import listdir
 
-if __name__ == "__main__":
-  model = fr.FaceRecognizer()
-  base_path = '.'
-  # Lulz at these initials
-  images = ['dog1-detected.jpg', 'dog4-2-detected.jpg', 'dog5-detected.jpg']
-  labels = [1,4,5]
-  c = 10
+model = fr.FaceRecognizer()
+base_path = '.'
+to_be_recognized = 'dog4-5-detected.jpg'
 
-  #try:
-      for file in listdir('./dog_face'):
-          if file.startswith("n"):
-              images.append('./dog_face', file)
-              labels.append(c)
-              c += 1
-  #except:
-   #   print "OpenCV Error"
-    #  print file
-
-
-#  try:
-#    for file in listdir('./dog_faces'):
-#      if(file.startswith("n")):
-#        images.append('./dog_faces', file)
-#        labels.append(c)
-#        c += 1
-#  except:
-#    print "OpenCV Error"
-#    print file
-
-  print len(images)
-
-  to_be_recognized = 'dog4-5-detected.jpg'
-
+def train(images, labels):
   model.train(base_path, images, labels)
 
-  prediction = model.recognize(base_path, to_be_recognized)
+def recognize():
+  return model.recognize(base_path, to_be_recognized)
 
-  print 'Image', to_be_recognized, 'is most closely related to', prediction
+if __name__ == "__main__":  
+  # Lulz at these initials
+  images = ['dog4-1-detected.jpg']
+  labels = [0]
+  c = 10
+
+  for file in listdir('./dog_faces'):
+    if file.startswith("n"):
+      images.append('./dog_faces/' + file)
+      labels.append(c)
+      c += 1
+
+
+  for x in range(0,13):
+    train(images, labels)
+    prediction = recognize()
+    # print labels
+    print 'Image', to_be_recognized, 'is most closely related to', prediction, "\n\n"
+    index = labels.index(prediction)
+    del images[index]
+    del labels[index]
+
+  print labels

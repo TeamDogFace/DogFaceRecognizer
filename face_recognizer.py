@@ -35,6 +35,6 @@ class FaceRecognizer:
     [id, confidence] = self.model.predict(np.asarray(img, dtype=np.uint8))
 
     # For debugging and accuracy checking purposes
-    print "Dog ID:", id, "with confidence:", confidence,"%"
+    # print "Dog ID:", id, "with confidence:", confidence,"%"
 
     return id
