@@ -6,7 +6,7 @@ from os import listdir
 
 model = fr.FaceRecognizer()
 base_path = '.'
-to_be_recognized = 'dog4-5-detected.jpg'
+to_be_recognized = 'dog4-5-detected2.jpg'
 
 def train(images, labels):
   model.train(base_path, images, labels)
@@ -14,9 +14,9 @@ def train(images, labels):
 def recognize():
   return model.recognize(base_path, to_be_recognized)
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
   # Lulz at these initials
-  images = ['dog4-1-detected.jpg']
+  images = ['dog4-5-detected.jpg']
   labels = [0]
   c = 10
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
       c += 1
 
 
-  for x in range(0,13):
+  for x in range(0,10):
     train(images, labels)
     prediction = recognize()
     # print labels

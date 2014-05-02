@@ -24,10 +24,12 @@ class FaceDetector:
     # We can't do recognition on multiple faces
     # Ok well we could but I'm lazy right now, 1 face is easier
     if len(rect) > 1:
-      raise Exception("Detected multiple faces. Proper recognition cannot be conducted.")
+      # raise Exception("Detected multiple faces. Proper recognition cannot be conducted.")
+      return None
 
     if len(rect) == 0:
-      raise Exception("Could not detect any faces. Try using another image.")
+      # raise Exception("Could not detect any faces. Try using another image.")
+      return None
 
     rect[:,2:] += rect[:,:2]
 
@@ -35,6 +37,6 @@ class FaceDetector:
 
     # For debugging purposes
     for x1, y1, x2, y2 in rect:
-      cv2.imwrite(filename + '-detected' + extension, vis[y1:y2,x1:x2])
+    #   cv2.imwrite(filename + '-detected' + extension, vis[y1:y2,x1:x2])
 
-    return vis[y1:y2,x1:x2]
+      return vis[y1:y2,x1:x2]
